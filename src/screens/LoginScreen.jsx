@@ -1,22 +1,24 @@
 import React, { useState } from 'react';
-import { Image, Keyboard, KeyboardAvoidingView, Platform, Pressable, ScrollView, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
+import { Image, Keyboard, KeyboardAvoidingView, Platform, Pressable, Text, TouchableWithoutFeedback, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { style } from '../../styles/general';
-import Input from '../components/Input';
 import { colors } from '../../styles/colors';
+import Input from '../components/Input';
 import Button from '../components/Button';
 import { showPasswordButton } from '../components/ShowPassButton';
 
-export default function LoginScreen() {
+export default function LoginScreen({ setIsLoggedin }) {
+  const navigation = useNavigation();
   const [userEmail, setUserEmail] = useState('');
   const [userPass, setUserPass] = useState('');
   const [securePassEntry, setSecurePassEntry] = useState(true);
 
   const doLogin = () => {
-    console.log(`Implement logic to login user ${userEmail}`);
+    setIsLoggedin(true);
   };
 
   const doSignup = () => {
-    console.log('Implement routing and link to sign-up');
+    navigation.navigate('Register');
   };
 
   return (

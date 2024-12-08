@@ -1,23 +1,25 @@
 import React, { useState } from 'react';
 import { Image, Keyboard, KeyboardAvoidingView, Platform, Pressable, Text, TouchableWithoutFeedback, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { style } from '../../styles/general';
-import Input from '../components/Input';
-import { showPasswordButton } from '../components/ShowPassButton';
 import { colors } from '../../styles/colors';
+import Input from '../components/Input';
 import Button from '../components/Button';
+import { showPasswordButton } from '../components/ShowPassButton';
 
-export default function RegistrationScreen() {
+export default function RegistrationScreen({ setIsLoggedin }) {
+  const navigation = useNavigation();
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [userPass, setUserPass] = useState('');
   const [securePassEntry, setSecurePassEntry] = useState(true);
 
   const doRegister = () => {
-    console.log(`Implement logic to register user ${userName}`);
+    setIsLoggedin(true);
   };
 
   const doLogin = () => {
-    console.log(`Implement routing and link to log-in`);
+    navigation.goBack();
   };
 
   return (
@@ -38,7 +40,7 @@ export default function RegistrationScreen() {
           rightButton={showPasswordButton({ securePassEntry, setSecurePassEntry })}
         />
         <Button onPress={doRegister} outerStyle={{ marginHorizontal: 'auto', marginTop: 43 - 16 }}>
-          <Text style={{ color: colors.button.default.text }}>Log in</Text>
+          <Text style={{ color: colors.button.default.text }}>Register</Text>
         </Button>
         <View style={style.redirectText}>
           <Text>
