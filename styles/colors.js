@@ -4,9 +4,11 @@ export const colors = StyleSheet.create({
   white: '#FFFFFF',
   backgroundMain: '#FFFFFF',
   backgroundSecondary: '#F6F6F6',
+  accent: '#FF6C00',
   black: '#000000',
   text: {
     default: '#212121',
+    secondary: '#BDBDBD',
     link: '#1B4371',
   },
   button: {

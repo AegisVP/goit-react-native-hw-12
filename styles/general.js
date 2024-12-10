@@ -13,6 +13,7 @@ export const style = StyleSheet.create({
   },
   authWindowContainer: {
     backgroundColor: colors.backgroundMain,
+    gap: 16,
     width: '100%',
     minHeight: '55%',
     maxHeight: '85%',
@@ -41,7 +42,7 @@ export const style = StyleSheet.create({
     fontWeight: 500,
     width: '100%',
     textAlign: 'center',
-    marginBottom: 32,
+    marginBottom: 16,
   },
   avatarContainer: {
     position: 'absolute',

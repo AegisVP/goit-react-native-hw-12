@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 
 const MapScreen = () => {
   return (
-    <View>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>MapScreen</Text>
     </View>
   );

@@ -3,22 +3,24 @@ import { Image, Keyboard, KeyboardAvoidingView, Platform, Pressable, Text, Touch
 import { useNavigation } from '@react-navigation/native';
 import { style } from '../../styles/general';
 import { colors } from '../../styles/colors';
-import Input from '../components/Input';
-import Button from '../components/Button';
-import { showPasswordButton } from '../components/ShowPassButton';
+import { Input } from '../components/Input';
+import { Button } from '../components/Button';
+import { ShowPasswordButton } from '../components/ShowPassButton';
 
-export default function LoginScreen({ setIsLoggedin }) {
+const LoginScreen = ({ doLogin }) => {
   const navigation = useNavigation();
   const [userEmail, setUserEmail] = useState('');
   const [userPass, setUserPass] = useState('');
   const [securePassEntry, setSecurePassEntry] = useState(true);
 
-  const doLogin = () => {
-    setIsLoggedin(true);
+  const gotoSignup = () => {
+    navigation.navigate('Register');
   };
 
-  const doSignup = () => {
-    navigation.navigate('Register');
+  const handleLogin = () => {
+    //validate userEmail/userPass
+
+    doLogin(userEmail, userPass);
   };
 
   return (
@@ -32,15 +34,15 @@ export default function LoginScreen({ setIsLoggedin }) {
           onChangeText={setUserPass}
           placeholder='Password'
           secureTextEntry={securePassEntry}
-          rightButton={showPasswordButton({ securePassEntry, setSecurePassEntry })}
+          rightButton={ShowPasswordButton({ securePassEntry, setSecurePassEntry })}
         />
-        <Button onPress={doLogin} outerStyle={{ marginHorizontal: 'auto', marginTop: 43 - 16 }}>
+        <Button onPress={handleLogin} outerStyle={{ marginHorizontal: 'auto', marginTop: 43 - 16 }}>
           <Text style={{ color: colors.button.default.text }}>Log in</Text>
         </Button>
         <View style={style.redirectText}>
           <Text>
             Don't have an account?
-            <TouchableWithoutFeedback onPress={doSignup}>
+            <TouchableWithoutFeedback onPress={gotoSignup}>
               <Text style={{ color: colors.text.link }}> Register</Text>
             </TouchableWithoutFeedback>
           </Text>
@@ -48,4 +50,6 @@ export default function LoginScreen({ setIsLoggedin }) {
       </KeyboardAvoidingView>
     </Pressable>
   );
-}
+};
+
+export default LoginScreen;

@@ -1,10 +1,16 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+import { PostList } from '../components/PostList';
+import { UserInfo } from '../components/UserInfo';
 
-const PostsScreen = () => {
+const PostsScreen = ({ posts, comments, user }) => {
   return (
-    <View>
-      <Text>PostsScreen</Text>
+    <View style={{ flex: 1, alignItems: 'start', justifyContent: 'center' }}>
+      <PostList
+        listHeaderComponent={<UserInfo user={user} style={{ marginVertical: 32 }} />}
+        posts={posts.map(post => ({ ...post, comments: comments.filter(comment => comment.post_id === post.id) }))}
+        user={user}
+      />
     </View>
   );
 };

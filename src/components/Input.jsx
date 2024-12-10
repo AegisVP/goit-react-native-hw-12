@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 import { colors } from '../../styles/colors';
 
-const Input = props => {
+export const Input = props => {
   const { value, onChangeText, placeholder, outerStyles, rightButton, autofocus = false, secureTextEntry = false, onBlur: onBlurCustom } = props;
   const [isFocused, setIsFocused] = useState(false);
 
@@ -47,7 +47,6 @@ const style = StyleSheet.create({
     padding: 15,
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginBottom: 16,
   },
   text: {
     color: colors.input.default.text,
@@ -57,5 +56,3 @@ const style = StyleSheet.create({
     backgroundColor: colors.input.focused.background,
   },
 });
-
-export default Input;

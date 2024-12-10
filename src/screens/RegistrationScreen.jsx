@@ -3,22 +3,18 @@ import { Image, Keyboard, KeyboardAvoidingView, Platform, Pressable, Text, Touch
 import { useNavigation } from '@react-navigation/native';
 import { style } from '../../styles/general';
 import { colors } from '../../styles/colors';
-import Input from '../components/Input';
-import Button from '../components/Button';
-import { showPasswordButton } from '../components/ShowPassButton';
+import { Input } from '../components/Input';
+import { Button } from '../components/Button';
+import { ShowPasswordButton } from '../components/ShowPassButton';
 
-export default function RegistrationScreen({ setIsLoggedin }) {
+const RegistrationScreen = ({ doRegister }) => {
   const navigation = useNavigation();
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [userPass, setUserPass] = useState('');
   const [securePassEntry, setSecurePassEntry] = useState(true);
 
-  const doRegister = () => {
-    setIsLoggedin(true);
-  };
-
-  const doLogin = () => {
+  const gotoLogin = () => {
     navigation.goBack();
   };
 
@@ -37,7 +33,7 @@ export default function RegistrationScreen({ setIsLoggedin }) {
           onChangeText={setUserPass}
           placeholder='Password'
           secureTextEntry={securePassEntry}
-          rightButton={showPasswordButton({ securePassEntry, setSecurePassEntry })}
+          rightButton={ShowPasswordButton({ securePassEntry, setSecurePassEntry })}
         />
         <Button onPress={doRegister} outerStyle={{ marginHorizontal: 'auto', marginTop: 43 - 16 }}>
           <Text style={{ color: colors.button.default.text }}>Register</Text>
@@ -45,7 +41,7 @@ export default function RegistrationScreen({ setIsLoggedin }) {
         <View style={style.redirectText}>
           <Text>
             Have an account?
-            <TouchableWithoutFeedback onPress={doLogin}>
+            <TouchableWithoutFeedback onPress={gotoLogin}>
               <Text style={{ color: colors.text.link }}> Log in</Text>
             </TouchableWithoutFeedback>
           </Text>
@@ -53,4 +49,6 @@ export default function RegistrationScreen({ setIsLoggedin }) {
       </KeyboardAvoidingView>
     </Pressable>
   );
-}
+};
+
+export default RegistrationScreen;

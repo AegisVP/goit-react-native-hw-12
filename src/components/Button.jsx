@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { colors } from '../../styles/colors';
 
-const Button = props => {
+export const Button = props => {
   const { children, onPress, outerStyle } = props;
 
   return (
@@ -22,5 +22,3 @@ const style = StyleSheet.create({
     borderRadius: 100,
   },
 });
-
-export default Button;
